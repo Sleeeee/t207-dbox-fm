@@ -21,3 +21,6 @@ class Interface:
             raise RuntimeError("The WiFi interface is not connected !")
         return self.session.get(url)
 
+    def get_audio(self, ip: str, n: int):
+        return self.get(f"http://{ip}:8000/api/audio/{n}/")
+
