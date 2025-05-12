@@ -3,7 +3,7 @@ from busio import SPI
 from sdcardio import SDCard
 import storage
 
-class Storage:
+class SD:
     def __init__(self, pins_spi=(board.GP18, board.GP19, board.GP16), pin_cs=board.GP17):
         self.pins_spi = SPI(*pins_spi)
         self.pin_cs = pin_cs
