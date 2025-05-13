@@ -13,7 +13,7 @@ class Interface:
         while not self.wlan.isconnected():
             print(".", end='')
             sleep(1)
-        print("Connected! IP:", self.wlan.ifconfig()[0])
+        print(" Connected! IP:", self.wlan.ifconfig()[0])
 
     def download_mp3(self, url, file_path):
         response = urequests.get(url, stream=True)
