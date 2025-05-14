@@ -1,4 +1,4 @@
-from machine import Pin
+from machine import Pin, SPI
 from sdcard import SDCard
 import urequests
 import os

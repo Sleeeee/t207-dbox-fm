@@ -11,8 +11,7 @@ def main():
     disp = None
     schedule = None
     try:
-        disp = Display()
-        schedule = Schedule(None, disp)
+        schedule = Schedule()
         inter = Interface()
         success = False
         while not success:
@@ -31,10 +30,12 @@ def main():
         play = input("Do you want to start playing now ? If so, please place the SD card inside the DFPlayer Mini [Y/n]")
         if play == "n":
             raise KeyboardInterrupt
+        disp = Display()
+        schedule.display = disp
         df = DFPlayer()
-
-        #df.resume()
-        #fm = FmModule()
+        schedule.dfplayer = df
+        df.resume()
+        fm = FmModule()
         while True:
             pass
     except KeyboardInterrupt:

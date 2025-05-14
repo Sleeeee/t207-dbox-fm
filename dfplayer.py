@@ -10,3 +10,6 @@ class DFPlayer:
 
     def resume(self):
         self.command(0x0d)
+
+    def next(self):
+        self.command(0x01)

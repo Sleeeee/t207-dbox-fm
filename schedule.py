@@ -2,10 +2,11 @@ import time
 from machine import Timer
 
 class Schedule:
-    def __init__(self, schedule=None, display=None):
+    def __init__(self, schedule=None, display=None, dfplayer=None):
         self.next_song = None
         self._schedule = None
         self.display = display
+        self.dfplayer = dfplayer
         self.time = {"hours": None, "minutes": None}
         self.timer = Timer()
         self.timer.init(mode=Timer.PERIODIC, period=10000, callback=self.poll_time)
@@ -58,6 +59,7 @@ class Schedule:
 
             if self.next_song is not None and self.next_song["time"]["minutes"] == self.minutes and self.next_song["time"]["hours"] == self.hours:
                 print(f"Time is {self.hours}:{self.minutes}. Playing song {self.next_song["publication"]}")
+                self.dfplayer.next()
                 self.plan_next_song()
 
     def deinit_timer(self):
