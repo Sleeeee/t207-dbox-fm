@@ -49,16 +49,13 @@ class Schedule:
     def poll_time(self, timer):
         time_values = time.gmtime(time.time())[3:5] # (hours, minutes)
         if (self.minutes != time_values[1]) or (self.hours != time_values[0]):
-            time_string = ""
-            for t in time_values:
-                time_string += str(t) if t > 9 else "0" + str(t) # Force two digits with starting zero if needed
             if self.display is not None:
-                self.display.digits = time_string
+                self.display.digits = f"{time_values[0]:02}{time_values[1]:02}"
             self.time["hours"] = time_values[0]
             self.time["minutes"] = time_values[1]
 
             if self.next_song is not None and self.next_song["time"]["minutes"] == self.minutes and self.next_song["time"]["hours"] == self.hours:
-                print(f"Time is {self.hours}:{self.minutes}. Playing song {self.next_song["publication"]}")
+                print(f"Time is {self.hours:02}:{self.minutes:02}. Playing song {self.next_song["publication"]}")
                 self.dfplayer.next()
                 self.plan_next_song()
 

@@ -39,7 +39,7 @@ class Interface:
             if response.status_code == 200:
                 for scheduling in response_text:
                     publication_id = scheduling["publication"]
-                    self.download_mp3(f"http://www.dbox-fm.be/api/audio/{publication_id}/", f"/sd/{publication_id}")
+                    self.download_mp3(f"http://www.dbox-fm.be/api/audio/{publication_id}/", f"/sd/{publication_id:03}.mp3")
             else:
                 print("Failed to fetch schedule")
         else:

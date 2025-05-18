@@ -33,8 +33,8 @@ def main():
         disp = Display()
         schedule.display = disp
         df = DFPlayer()
+        df.reset()
         schedule.dfplayer = df
-        df.resume()
         fm = FmModule()
         while True:
             pass
@@ -44,6 +44,8 @@ def main():
             disp.deinit()
         if schedule is not None:
             schedule.deinit_timer()
+        if df is not None:
+            df.pause()
         print("Collected, exiting now")
 
 main()
