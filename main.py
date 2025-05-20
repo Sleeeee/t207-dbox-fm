@@ -10,6 +10,7 @@ from fmmodule import FmModule
 def main():
     disp = None
     schedule = None
+    df = None
     try:
         schedule = Schedule()
         inter = Interface()

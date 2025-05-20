@@ -35,13 +35,12 @@ class Interface:
     def download_schedule(self, download_songs, date=""):
         response = urequests.get(f"http://www.dbox-fm.be/api/schedule/{date}")
         response_text = json.loads(response.text)
-        if download_songs:
-            if response.status_code == 200:
-                for scheduling in response_text:
-                    publication_id = scheduling["publication"]
-                    self.download_mp3(f"http://www.dbox-fm.be/api/audio/{publication_id}/", f"/sd/{publication_id:03}.mp3")
-            else:
-                print("Failed to fetch schedule")
+        if response.status_code == 200:
+                for i in range(len(response_text)):
+                    response_text[i]["song_id"] = i + 1
+                    if download_songs:
+                        publication_id = response_text[i]["publication"]
+                        self.download_mp3(f"http://www.dbox-fm.be/api/audio/{publication_id}/", f"/sd/{(i+1):03}.mp3")
         else:
-            print("Downloading skipped")
+            print("Failed to fetch schedule")
         return response_text
